@@ -44,4 +44,4 @@ python3 tests/smoke.py
 
 ## License
 
-See LICENSE file.
+See **LICENSE** file.
