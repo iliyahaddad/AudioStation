@@ -4,7 +4,7 @@
   box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi),inset 2px 2px var(--dk),inset -2px -2px var(--lt)}
 .floppy:disabled{cursor:default}
 .fslot{position:absolute;left:8px;right:8px;top:13px;height:4px;background:#000;box-shadow:1px 1px var(--hi),-1px -1px var(--sh)}
-.fdoor{position:absolute;left:50%;top:7px;width:76px;height:16px;margin-left:-34px;background:var(--face);transition:transform .12s;
+.fdoor{position:absolute;left:50%;top:7px;width:76px;height:16px;margin-left:-34px;background:rgba(0,0,0,.35);transition:transform .12s;
   box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi),inset 2px 2px var(--dk)}
 .floppy.read .fdoor,.floppy:active:not(:disabled) .fdoor{transform:translateY(1px);
   box-shadow:inset 1px 1px var(--dk),inset -1px -1px var(--hi),inset 2px 2px var(--sh)}
