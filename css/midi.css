@@ -1,0 +1,30 @@
+/* General MIDI with floppy drive */
+.midileft{flex:none;width:178px;display:flex;flex-direction:column;justify-content:space-between}
+.floppy{position:relative;display:block;width:100%;height:36px;margin:0;padding:0;border:0;background:var(--face);cursor:pointer;
+  box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi),inset 2px 2px var(--dk),inset -2px -2px var(--lt)}
+.floppy:disabled{cursor:default}
+.fslot{position:absolute;left:8px;right:8px;top:13px;height:4px;background:#000;box-shadow:1px 1px var(--hi),-1px -1px var(--sh)}
+.fdoor{position:absolute;left:50%;top:7px;width:76px;height:16px;margin-left:-34px;background:var(--face);transition:transform .12s;
+  box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi),inset 2px 2px var(--dk)}
+.floppy.read .fdoor,.floppy:active:not(:disabled) .fdoor{transform:translateY(1px);
+  box-shadow:inset 1px 1px var(--dk),inset -1px -1px var(--hi),inset 2px 2px var(--sh)}
+.fled{position:absolute;left:22px;bottom:4px;width:11px;height:5px;border-radius:2px;border:1px solid #000;background:var(--led-dim)}
+.floppy.lit .fled{background:var(--led)}
+.floppy.read .fled{animation:blink .18s steps(2) infinite}
+@keyframes blink{50%{background:var(--led-dim)}to{background:var(--led)}}
+.midirow{display:flex;align-items:center;gap:8px}
+.gmlogo{flex:none;display:flex;flex-direction:column;line-height:1;color:#505050}
+.gmlogo span{font-size:7px;letter-spacing:1.4px;font-weight:bold}
+.gmlogo b{font:900 16px/.95 Arial,sans-serif;letter-spacing:.5px}
+.fname{flex:1;min-width:0;height:18px;line-height:18px;padding:0 6px;background:#000;color:var(--led);font-weight:bold;font-size:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-transform:uppercase;
+  box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi)}
+.mod.off .fname{color:transparent}
+.lcd.meter{flex:1;min-width:0;gap:5px}
+.mcol{display:flex;flex-direction:column;gap:1px;width:144px;flex:none}
+.mbars{display:flex;height:23px}
+.mbars>span{width:9px;display:flex;flex-direction:column-reverse;gap:1px;padding:0 1px}
+.mbars i{height:2px;background:var(--led-dim)}
+.mbars i.on{background:var(--led)}
+.mnums{display:block;width:144px;height:8px;fill:var(--led)}
+.lcd.meter .tcol{margin-left:auto;padding-top:2px}
+

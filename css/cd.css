@@ -1,0 +1,31 @@
+/* CD-ROM drive with mechanical tray */
+.drive{position:relative;flex:1;min-width:0;height:42px;box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi)}
+.mouth{position:absolute;left:5px;right:5px;top:4px;height:34px;background:linear-gradient(#000 0,#151515 70%,#2a2a2a)}
+.drawer{position:absolute;left:5px;right:5px;top:4px;height:34px;--ext:0px;--grow:0px}
+.bed{position:absolute;top:0;left:calc(var(--grow) * -1);right:calc(var(--grow) * -1);height:calc(var(--ext) + 3px);padding:0;border:0;margin:0;
+  overflow:hidden;cursor:pointer;
+  clip-path:polygon(var(--grow) 0,calc(100% - var(--grow)) 0,100% 100%,0 100%);
+  background:linear-gradient(#1e1e1e,#4a4a4a 35%,#8c8c8c)}
+.bed[hidden]{display:none}
+.bed:disabled{cursor:default}
+.well{position:absolute;left:50%;bottom:2px;width:74%;height:36px;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,#5a5a5a 0 18%,#6c6c6c 19% 96%,#3a3a3a 97%);box-shadow:inset 0 2px 2px rgba(0,0,0,.6)}
+.disc{position:absolute;left:50%;bottom:3px;width:70%;height:34px;transform:translateX(-50%);border-radius:50%;
+  background:
+    radial-gradient(closest-side,#4b4b4b 0 9%,#e6e6e6 10% 14%,#a0a0a0 15%,transparent 16%),
+    radial-gradient(closest-side,transparent 0 31%,rgba(255,255,255,.55) 32%,transparent 34% 97%,#7a7a7a 98%),
+    conic-gradient(from 210deg,#dcdcdc,#b7c6dc 12%,#f2d6ee 22%,#d3f2dc 30%,#eeeeee 40%,#9e9e9e 50%,#dcdcdc 62%,#c6d8f0 74%,#f4ecc8 84%,#dcdcdc)}
+.disc[hidden]{display:none}
+.front{position:absolute;top:var(--ext);left:calc(var(--grow) * -1);right:calc(var(--grow) * -1);height:calc(34px + var(--grow) * .5);
+  background:var(--face);display:flex;align-items:center;padding:0 10px;
+  box-shadow:inset -1px -1px var(--sh),inset 1px 1px var(--hi),0 calc(var(--grow) * .5) 0 rgba(0,0,0,.35)}
+.front::after{content:"";position:absolute;left:6px;right:6px;bottom:3px;height:1px;background:var(--sh);box-shadow:0 1px var(--hi)}
+.emb{color:var(--face);text-shadow:-1px -1px 0 var(--sh),1px 1px 0 var(--hi)}
+.cdlogo{display:flex;flex-direction:column;line-height:1;color:#606060}
+.cdlogo span{font-size:7px;font-weight:bold;letter-spacing:2.6px}
+.cdlogo b{font:900 italic 24px/.8 Arial,sans-serif;letter-spacing:-1px;margin-top:1px}
+.lcd.time{width:162px;flex:none}
+.modes-l{list-style:none;margin:0 0 0 auto;padding:0;font-size:8px;line-height:8.6px;color:var(--led-dim)}
+.modes-l li{display:flex;justify-content:space-between;gap:5px}
+.modes-l li.on{color:var(--led)}
+

@@ -1,0 +1,20 @@
+/* LCDs */
+.lcd{height:42px;background:#000;color:var(--led);padding:4px 5px 2px;display:flex;gap:4px;overflow:hidden;white-space:nowrap;
+  box-shadow:inset 1px 1px var(--sh),inset -1px -1px var(--hi)}
+.mod.off .lcd>*{visibility:hidden}
+.lcd .lbl{font-size:9px;line-height:10px}
+.lcd.num{width:44px;flex:none;flex-direction:column;align-items:center;gap:1px}
+.d7{display:flex;gap:1px;align-items:flex-start}
+.dg{display:block;width:14px;height:24px;transform:skewX(-5deg)}
+.dg polygon{fill:var(--led-dim)} .dg polygon.on{fill:var(--led)}
+.colon{position:relative;width:4px;height:24px}
+.colon::before,.colon::after{content:"";position:absolute;left:1px;width:3px;height:3px;background:var(--led)}
+.colon::before{top:7px} .colon::after{top:15px}
+.sm .dg{width:11px;height:19px} .sm .colon{height:19px} .sm .colon::before{top:5px} .sm .colon::after{top:12px}
+.tcol{display:flex;flex-direction:column;gap:1px}
+.lbl.two{display:flex;justify-content:space-around}
+.ind{display:flex;flex-direction:column;justify-content:space-between;padding:3px 0 12px;color:var(--led-dim)}
+.ind svg{display:block;width:8px;height:8px;fill:currentColor}
+.mod[data-state="play"] .ip,.mod[data-state="pause"] .ipa,.mod[data-state="recpause"] .ipa{color:var(--led)}
+.mod[data-state="rec"] .ip{color:var(--red)}
+

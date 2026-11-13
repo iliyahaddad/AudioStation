@@ -1,0 +1,36 @@
+/* mixer */
+.groups{display:flex;flex:none}
+.grp{width:var(--gw);display:flex;flex-direction:column;align-items:center;border-left:1px solid var(--sh);box-shadow:inset 1px 0 var(--hi)}
+.grp:last-child{border-right:1px solid var(--sh)}
+.faders{display:flex;gap:1px;height:58px}
+.fader{position:relative;width:19px;height:58px;cursor:ns-resize;touch-action:none;--v:.75}
+.fader::before{content:"";position:absolute;inset:11px 2px;background:repeating-linear-gradient(to bottom,var(--sh) 0 1px,transparent 1px 9px)}
+.fader.bal::after{content:"";position:absolute;left:1px;right:1px;top:28px;height:1px;background:#000}
+.fader:focus-visible{outline:1px dotted #000;outline-offset:1px}
+.slot{position:absolute;left:50%;top:4px;bottom:4px;width:4px;margin-left:-2px;background:#000;box-shadow:1px 1px var(--hi),-1px -1px var(--sh)}
+.recmode .slot{background:var(--red)}
+.knob{position:absolute;left:50%;margin-left:-8px;width:16px;height:22px;top:calc((1 - var(--v)) * (100% - 22px))}
+.knob svg{display:block;width:16px;height:22px}
+.off .fader{cursor:default}
+.grp-foot{display:flex;align-items:center;justify-content:center;gap:5px;height:16px;margin-top:4px}
+.gi svg{display:block;width:12px;height:12px;fill:#000;color:#000}
+.mini{position:relative;width:12px;height:12px;padding:0;border:0;background:var(--face);cursor:pointer;box-shadow:inset -1px -1px #000,inset 1px 1px #fff}
+.mini::after{content:"";position:absolute;inset:-3px}
+.mini[aria-pressed="true"]{box-shadow:inset 1px 1px #000,inset -1px -1px #fff;background:linear-gradient(45deg,transparent 42%,var(--red) 42% 58%,transparent 58%),var(--face)}
+.mini.sel{background:#9fc8c8}
+.mini.sel[aria-pressed="true"]{background:#1d9a9a}
+.mini.mono[aria-pressed="true"]{background:#1d9a9a}
+.mini:disabled{cursor:default;background:var(--face)}
+.vent{flex:1;margin:4px 2px;background:repeating-linear-gradient(to bottom,var(--sh) 0 1px,var(--hi) 1px 2px,transparent 2px 9px)}
+
+.main{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:6px}
+.row.ctl{height:22px;align-items:center;justify-content:flex-end}
+.tp{display:flex;gap:10px}
+.tpg{display:flex}
+.tb{width:41px;height:22px}
+.tb svg{width:16px;height:10px}
+#m-dat .tb{width:36px} #m-midi .tb{width:35px}
+.btn.mode{width:50px;margin-right:auto;margin-left:62px}
+
+#m-mixer{padding:10px 8px 4px;min-height:94px}
