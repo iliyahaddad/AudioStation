@@ -44,4 +44,4 @@ python3 tests/smoke.py
 
 ## License
 
-Add a `LICENSE` file of your choice before publishing.
+See LICENSE file.
