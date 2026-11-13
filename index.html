@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AudioStation</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/mixer.css">
+<link rel="stylesheet" href="css/lcd.css">
+<link rel="stylesheet" href="css/cd.css">
+<link rel="stylesheet" href="css/dat.css">
+<link rel="stylesheet" href="css/midi.css">
+<link rel="stylesheet" href="css/dialogs.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="rb" x1="0" x2="1"><stop offset="0" stop-color="#0a22d8"/><stop offset=".5" stop-color="#19ff4a"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+</defs></svg>
+
+<main id="fit">
+<button type="button" id="desk" aria-label="Open AudioStation"><i>IBM</i><span>AudioStation</span></button>
+<div id="app" class="win">
+  <header class="titlebar">
+    <span class="tb-icon" aria-hidden="true"></span>
+    <h1 class="tb-title">AudioStation</h1>
+    <span class="tb-ctl">
+      <button type="button" class="tb-btn min" data-win="min" aria-label="Minimize" title="Minimize"></button>
+      <button type="button" class="tb-btn max" data-win="max" aria-label="Maximize" title="Maximize"></button>
+      <button type="button" class="tb-btn cls" data-win="close" aria-label="Close" title="Close"><svg viewBox="0 0 8 7" aria-hidden="true"><path d="M0 0h2l2 2 2-2h2L5 3.5 8 7H6L4 5 2 7H0l3-3.5z"/></svg></button>
+    </span>
+  </header>
+
+  <div class="rack">
+    <section class="mod head" id="m-head" aria-label="AudioStation controls">
+      <span class="ibm" role="img" aria-label="IBM">IBM</span>
+      <span class="brand" aria-hidden="true">AudioStation</span>
+      <div class="hbtns">
+        <button type="button" class="btn hb bang" data-act="head:about" aria-label="About AudioStation" title="About">!</button>
+        <button type="button" class="btn hb q" data-act="head:help" aria-label="Help" title="Help">?</button>
+        <button type="button" class="btn hb ic" data-act="head:show" data-target="mixer" aria-pressed="true" aria-label="Show mixer" title="Mixer"><span data-icon="hmix"></span></button>
+        <button type="button" class="btn hb ic" data-act="head:show" data-target="cd" aria-pressed="true" aria-label="Show CD player" title="Compact Disc"><span data-icon="hcd"></span></button>
+        <button type="button" class="btn hb ic" data-act="head:show" data-target="dat" aria-pressed="true" aria-label="Show Digital Audio Transport" title="Digital Audio Transport"><span data-icon="hdat"></span></button>
+        <button type="button" class="btn hb ic" data-act="head:show" data-target="midi" aria-pressed="true" aria-label="Show General MIDI player" title="General MIDI"><span data-icon="hkbd"></span></button>
+        <button type="button" class="btn hb pw" data-act="head:power" title="Power all modules on or off">Power</button>
+      </div>
+    </section>
+
+    <section class="mod" id="m-mixer" aria-label="Mixer">
+      <div class="side wide">
+        <button type="button" class="btn" data-act="mixer:power" aria-pressed="true">Power</button>
+        <label class="chk"><input type="checkbox" id="lock" checked><span class="led"></span>Lock</label>
+        <div class="modesel" role="radiogroup" aria-label="Fader mode">
+          <label class="chk"><input type="radio" name="mixmode" value="playback" checked><span class="led"></span>Playback</label>
+          <label class="chk"><input type="radio" name="mixmode" value="record"><span class="led"></span>Record</label>
+        </div>
+      </div>
+      <div class="groups" id="groups"></div>
+      <div class="vent" aria-hidden="true"></div>
+    </section>
+
+    <section class="mod" id="m-cd" aria-label="Compact Disc player" data-state="stop" data-deck="cd">
+      <div class="side">
+        <button type="button" class="btn" data-act="cd:power" aria-pressed="true">Power</button>
+        <button type="button" class="btn" data-act="cd:eject" id="cd-eject">Eject</button>
+        <button type="button" class="btn" data-act="cd:playlist">Playlist</button>
+      </div>
+      <div class="main">
+        <div class="row">
+          <div class="drive" id="cd-drive">
+            <div class="mouth" aria-hidden="true"></div>
+            <div class="drawer" id="cd-drawer">
+              <button type="button" class="bed" id="cd-bed" data-act="cd:load" aria-label="Load audio files onto the disc" title="Load audio files" hidden><span class="well"></span><span class="disc" id="cd-disc"></span></button>
+              <div class="front" aria-hidden="true"><div class="cdlogo emb"><span>COMPACT</span><b>disc</b></div></div>
+            </div>
+          </div>
+          <div class="lcd num" aria-hidden="true"><span class="d7" id="cd-track" data-fmt="88"></span><span class="lbl">Track</span></div>
+          <div class="lcd time" aria-hidden="true">
+            <span class="ind"><span class="ip" data-icon="ip"></span><span class="ipa" data-icon="ipa"></span></span>
+            <span class="tcol"><span class="d7" id="cd-time" data-fmt="88:88"></span><span class="lbl two"><span>Min</span><span>Sec</span></span></span>
+            <ul class="modes-l" id="cd-modes">
+              <li data-m="playlist"><span>Playlist</span><span id="cd-ord">1234</span></li>
+              <li data-m="shuffle"><span>Shuffle</span><span id="cd-shuf">2143</span></li>
+              <li data-m="loop"><span>Loop</span><span>&#8635;</span></li>
+              <li data-m="single"><span>Single</span><span>&rarr;</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row ctl">
+          <button type="button" class="btn mode" data-act="cd:mode" title="Cycle play mode">Mode</button>
+          <div class="tp" data-tp="cd"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mod" id="m-dat" aria-label="Digital Audio Transport" data-state="stop" data-deck="dat">
+      <div class="side">
+        <button type="button" class="btn" data-act="dat:power" aria-pressed="true">Power</button>
+        <button type="button" class="btn" data-act="dat:edit">Edit</button>
+        <button type="button" class="btn" data-act="dat:playlist">Playlist</button>
+      </div>
+      <div class="cassbox">
+        <div class="cass">
+          <div class="cass-name" id="dat-name">CHIMES.WAV</div>
+          <div class="cass-win" aria-hidden="true"><canvas id="dat-tape"></canvas></div>
+        </div>
+        <div class="datlogo" aria-hidden="true"><b class="emb">DAT</b><span>Digital Audio<br>Transport</span></div>
+      </div>
+      <div class="main">
+        <div class="row" aria-hidden="true">
+          <div class="lcd num"><span class="d7" id="dat-track" data-fmt="88"></span><span class="lbl">Track</span></div>
+          <div class="lcd dtime"><span class="tcol"><span class="d7" id="dat-time" data-fmt="88:88"></span><span class="lbl two"><span>Min</span><span>Sec</span></span></span></div>
+          <div class="lcd vu">
+            <span class="ind"><span class="ip" data-icon="ip"></span><span class="ipa" data-icon="ipa"></span></span>
+            <div class="vugrid">
+              <span>Left</span><div class="vubar" id="vu-l"></div>
+              <span>Right</span><div class="vubar" id="vu-r"></div>
+              <span>dB</span><div class="vuscale"><span style="left:50%">-10</span><span style="left:62.5%">-5</span><span style="left:75%">0</span><span class="r" style="left:84%">+3</span><span class="r">+10</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="row ctl"><div class="tp" data-tp="dat" data-rec></div></div>
+      </div>
+    </section>
+
+    <section class="mod" id="m-midi" aria-label="General MIDI player" data-state="stop" data-deck="midi">
+      <div class="side">
+        <button type="button" class="btn" data-act="midi:power" aria-pressed="true">Power</button>
+        <button type="button" class="btn" data-act="midi:edit">Edit</button>
+        <button type="button" class="btn" data-act="midi:playlist">Playlist</button>
+      </div>
+      <div class="midileft">
+        <button type="button" class="floppy" id="midi-floppy" data-act="midi:load" aria-label="Floppy drive: load MIDI files" title="Load MIDI files"><span class="fslot"></span><span class="fdoor"></span><i class="fled"></i></button>
+        <div class="midirow">
+          <div class="gmlogo emb" aria-hidden="true"><span>GENERAL</span><b>MIDI</b></div>
+          <div class="fname" id="midi-name">CANYON.MID</div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="row" aria-hidden="true">
+          <div class="lcd num"><span class="d7" id="midi-song" data-fmt="88"></span><span class="lbl">Song</span></div>
+          <div class="lcd meter">
+            <span class="ind"><span class="ip" data-icon="ip"></span><span class="ipa" data-icon="ipa"></span></span>
+            <div class="mcol"><div class="mbars" id="midi-bars"></div><svg class="mnums" id="midi-nums" viewBox="0 0 144 8"></svg></div>
+            <span class="tcol sm"><span class="d7" id="midi-time" data-fmt="88:88"></span><span class="lbl two"><span>Min</span><span>Sec</span></span></span>
+          </div>
+        </div>
+        <div class="row ctl"><div class="tp" data-tp="midi" data-rec></div></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="overlay" hidden></div>
+  <div id="status" class="sr" role="status" aria-live="polite"></div>
+</div>
+</main>
+
+<script src="js/util.js"></script>
+<script src="js/ticker.js"></script>
+<script src="js/segments.js"></script>
+<script src="js/content.js"></script>
+<script src="js/audio-graph.js"></script>
+<script src="js/recorder.js"></script>
+<script src="js/voices.js"></script>
+<script src="js/midi-parser.js"></script>
+<script src="js/id3.js"></script>
+<script src="js/deck.js"></script>
+<script src="js/cd-deck.js"></script>
+<script src="js/dat-deck.js"></script>
+<script src="js/midi-deck.js"></script>
+<script src="js/mixer.js"></script>
+<script src="js/ui-static.js"></script>
+<script src="js/dialogs.js"></script>
+<script src="js/playlist.js"></script>
+<script src="js/import.js"></script>
+<script src="js/dnd.js"></script>
+<script src="js/edit.js"></script>
+<script src="js/actions.js"></script>
+<script src="js/mediasession.js"></script>
+<script src="js/shortcuts.js"></script>
+<script src="js/tape.js"></script>
+<script src="js/tray.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
